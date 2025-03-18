@@ -1,0 +1,28 @@
+### 1. POST Request to Create a Review for a Pokemon
+POST https://your-api-url/api/pokemon/1/reviews
+Content-Type: application/json
+
+{
+  "username": "Ash Ketchum",
+  "rating": 5,
+  "comment": "Pikachu is an amazing Pokemon, very strong and reliable!"
+}
+
+### 2. GET Request to Retrieve All Reviews for a Specific Pokemon
+GET https://your-api-url/api/pokemon/1/reviews
+
+### 3. GET Request to Retrieve a Specific Review by ID for a Pokemon
+GET https://your-api-url/api/pokemon/1/reviews/1
+
+### 4. PUT Request to Update a Specific Review for a Pokemon
+PUT https://your-api-url/api/pokemon/1/reviews/1
+Content-Type: application/json
+
+{
+  "username": "Ash Ketchum",
+  "rating": 4,
+  "comment": "Pikachu is good, but could be stronger in battles."
+}
+
+### 5. DELETE Request to Delete a Review for a Pokemon
+DELETE https://your-api-url/api/pokemon/1/reviews/1

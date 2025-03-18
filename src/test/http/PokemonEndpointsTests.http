@@ -1,0 +1,30 @@
+### 1. GET Request to Retrieve All Pokemons (with pagination)
+GET https://your-api-url/api/pokemon?pageNo=0&pageSize=10
+
+### 2. GET Request to Retrieve Pokemon by ID
+GET https://your-api-url/api/pokemon/1
+
+### 3. POST Request to Create a New Pokemon
+POST https://your-api-url/api/pokemon/create
+Content-Type: application/json
+
+{
+  "name": "Pikachu",
+  "type": "Electric",
+  "level": 5,
+  "abilities": ["Static", "Lightning Rod"]
+}
+
+### 4. PUT Request to Update an Existing Pokemon
+PUT https://your-api-url/api/pokemon/1/update
+Content-Type: application/json
+
+{
+  "name": "Pikachu",
+  "type": "Electric",
+  "level": 6,
+  "abilities": ["Static", "Volt Tackle"]
+}
+
+### 5. DELETE Request to Delete a Pokemon
+DELETE https://your-api-url/api/pokemon/1/delete

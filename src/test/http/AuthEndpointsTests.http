@@ -1,0 +1,35 @@
+### Login Request (Valid Credentials)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+### Login Request (Invalid Credentials)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "wronguser",
+  "password": "wrongpassword"
+}
+
+### Register New User
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "securepassword"
+}
+
+### Register Existing User (Should Fail)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "anotherpassword"
+}
