@@ -8,6 +8,7 @@ import com.pokemonreview.api.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'MODERATOR')")
     @GetMapping("pokemon")
     public ResponseEntity<PokemonResponse> getPokemons(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
@@ -31,24 +33,28 @@ public class PokemonController {
         return new ResponseEntity<>(pokemonService.getAllPokemon(pageNo, pageSize), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'MODERATOR')")
     @GetMapping("pokemon/{id}")
     public ResponseEntity<PokemonDto> pokemonDetail(@PathVariable int id) {
         return ResponseEntity.ok(pokemonService.getPokemonById(id));
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("pokemon/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PokemonDto> createPokemon(@RequestBody PokemonDto pokemonDto) {
         return new ResponseEntity<>(pokemonService.createPokemon(pokemonDto), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("pokemon/{id}/update")
     public ResponseEntity<PokemonDto> updatePokemon(@RequestBody PokemonDto pokemonDto, @PathVariable("id") int pokemonId) {
         PokemonDto response = pokemonService.updatePokemon(pokemonDto, pokemonId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("pokemon/{id}/delete")
     public ResponseEntity<String> deletePokemon(@PathVariable("id") int pokemonId) {
         pokemonService.deletePokemonId(pokemonId);
